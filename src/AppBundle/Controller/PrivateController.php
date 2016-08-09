@@ -15,9 +15,11 @@ class PrivateController extends Controller
     {
     
     /**
+     * muestra un formulario para crear un nuevp trayecto
+     * 
      * 1.- Crear carpeta nueva /app/Resources/views/trayecto
-     * 2.- Del proyecto de la semana pasada, copiar a este el fichero nuevoTrayecto.html.twig
-     * 3.- Modificar el fichero todas las acciones que haga falta
+     * 1. Habría que copiar los twig de nuevoTrayecto.html.twig
+     * 2. Y indicar en el render que se muestren
      *  
      * 
      * */
@@ -34,10 +36,10 @@ class PrivateController extends Controller
     {
     
     /**
+     * Guarda los datos enviados por el formulario nuevoTrayecto
+     * 
+     * 1. Habría que guardar los datos recibiendos en $_GET en un nuevoTrayecto
      * 1.- Crear carpeta nueva /app/Resources/views/trayecto
-     * 2.- Del proyecto de la semana pasada, copiar el contenido a este el fichero publicarTrayecto.php
-     * 3.- Modificar el fichero todas las acciones que haga falta
-     *  
      * 
      * */
     return $this->render('building/index.html.twig');
