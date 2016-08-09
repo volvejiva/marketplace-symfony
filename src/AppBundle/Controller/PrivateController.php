@@ -11,7 +11,7 @@ class PrivateController extends Controller
     /**
      * @Route("/nuevoTrayecto", name="private_nuevoTrayecto")
      */
-    private function nuevoTrayectoAction(Request $request)
+    public function nuevoTrayectoAction(Request $request)
     {
     
     /**
@@ -21,14 +21,8 @@ class PrivateController extends Controller
      *  
      * 
      * */
-    
-    
-    
-    
-    
-    
-    die("pendiente por hacer: Nuevo Trayecto");
-        }
+    return $this->render('building/index.html.twig');
+    }
         
         
         
@@ -36,7 +30,7 @@ class PrivateController extends Controller
      * @Route("/publicarTrayecto", name="private_publicarTrayecto")
      */
      
-    private function publicarTrayectoAction(Request $request)
+    public function publicarTrayectoAction(Request $request)
     {
     
     /**
@@ -46,13 +40,7 @@ class PrivateController extends Controller
      *  
      * 
      * */
-    
-    
-    
-    
-    
-    
-    die("pendiente por hacer: Publicar nuevo trayecto");
+    return $this->render('building/index.html.twig');
     }
 }
 
