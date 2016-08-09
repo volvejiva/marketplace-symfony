@@ -24,6 +24,20 @@ PRIMEROS PASOS PARA CREAR EL PROYECTO:
     1.4 Una vez descomprimidos ambos ficheros .zip, podemos observar que dentro de WEB se nos han creados dos nuevas carpetas, con lo cual ya podemos borrar
     ambos ficheros con extensión .zip.
     
+2.- SE NOS HA IDO OLVIDANDO PONER TODO LO QUE HEMOS HECHO PARA EL PROYECTO
+
+3.- EN ESTE PASO HE INSTALADO FOSUserBundle
+
+    He seguido el manual https://symfony.com/doc/master/bundles/FOSUserBundle/index.html
+    Y he cambiado el contenido de algunos ficheros además de crear otros, que son los siguientes:
     
+        
+        composer.json
+        composer.lock
+        AppKernel
+        config.yml
+        security.yml
+        routing.yml
+        y src/AppBundle/Entity/Persona.php
 
 
