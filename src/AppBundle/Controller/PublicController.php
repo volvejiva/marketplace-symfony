@@ -23,8 +23,8 @@ class PublicController extends Controller
     public function listAction(Request $request)
     {
         // replace this example code with whatever you need
-        die("TODO");
-        return $this->render('list/list.html.twig');
+        return $this->render('building/index.html.twig');
+        //return $this->render('list/list.html.twig');
         
         /**
          *  0. Para que funcionen estas instrucciones suponemos que tenemos creada nuestra BBDD con la entidad trayectos y persona y
