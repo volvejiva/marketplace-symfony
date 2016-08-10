@@ -71,3 +71,8 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\Persona
+    
+# app/config/config.yml
+easy_admin:
+    entities:
+        - AppBundle\Entity\Persona
