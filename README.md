@@ -39,6 +39,14 @@ PRIMEROS PASOS PARA CREAR EL PROYECTO:
         security.yml
         routing.yml
         y src/AppBundle/Entity/Persona.php
+        
+        
+        Para poder actualizar en este punto seguir este orden:
+        
+            git pull (actualizacion del código)
+            composer install (para instalar FOSUserBundle)
+            php app/console doctrine:schema:update --force
+            
 
 4.- Creación de entidades Persona y Trayecto
 
