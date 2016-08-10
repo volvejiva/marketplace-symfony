@@ -54,3 +54,5 @@ PRIMEROS PASOS PARA CREAR EL PROYECTO:
     Una vez credas hay que generar los set y los get usando:
        $ php app/console generate:doctrine:entities AppBundle/Entity
     Comprobamos que se han creado correctamente todos los get y los set.
+    Actualizar la BBDD con el siguiente comando:
+        $ php app/console doctrine:schema:update --force
