@@ -90,4 +90,24 @@ class Persona extends BaseUser
     {
         return $this->trayectos;
     }
+    
+    /**
+     * Get expires at
+     *
+     * @return \DateTime Expires at
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
+
+    /**
+     * Get credentials expire at
+     *
+     * @return \DateTime Credentials expire at
+     */
+    public function getCredentialsExpireAt()
+    {
+        return $this->credentialsExpireAt;
+    }
 }
