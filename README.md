@@ -40,4 +40,9 @@ PRIMEROS PASOS PARA CREAR EL PROYECTO:
         routing.yml
         y src/AppBundle/Entity/Persona.php
 
+4.- Creación de entidades Persona y Trayecto
 
+    Se crean las dos entidades de la BBDD que usamos hasta el momento usando la sintáxis correcta.
+    Una vez credas hay que generar los set y los get usando:
+       $ php app/console generate:doctrine:entities AppBundle/Entity
+    Comprobamos que se han creado correctamente todos los get y los set.
