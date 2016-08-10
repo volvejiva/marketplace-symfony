@@ -61,23 +61,27 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
                         <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                {% set usuarioLogueado = null %}
-                                {% if usuarioLogueado == null %}
-                                <a href="{{ path('home') }}">
-                                    <button type="button" class="btn btn-primary">Logueate</button>
-                                </a>
-                                {% else %}
-                                <button type="button" class="btn btn-primary"> {{ usuarioLogueado.nombre }}  
-                                <button type="button" class="btn btn-primary"> <a href"={{ path('home') }}">LOGOUT</a></button>
-                                {% endif %}
-                            </li>
-                            {% if usuarioLogueado != null %}
-                            <li>
-                                <a href="{{ path('home') }}">
-                                    <button class="btn btn-default" type="submit">Publicar Trayecto</button>
-                                </a>
-                            </li>
+                            {% if app.user == null %}
+                                <li>
+                                    <a href="{{ path('fos_user_security_login') }}">
+                                        <button type="button" class="btn btn-primary">Login</button>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('fos_user_registration_register') }}">
+                                        <button type="button" class="btn btn-primary">Registro</button>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <div>
+                                    {{ app.user.username }}
+                                    <a href="{{ path('home') }}">
+                                        <button class="btn btn-default" type="submit">Publicar Trayecto</button>
+                                    </a>
+                                    <a>
+                                        <button type="button" class="btn btn-primary"> <a href="{{ path('fos_user_security_logout') }}">LOGOUT</a></button>
+                                    </a>
+                                </div>
                             {% endif %}
                         </ul>
                     </div>
