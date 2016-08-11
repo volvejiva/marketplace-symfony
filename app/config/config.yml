@@ -76,3 +76,4 @@ fos_user:
 easy_admin:
     entities:
         - AppBundle\Entity\Persona
+        - AppBundle\Entity\Trayecto
