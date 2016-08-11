@@ -56,6 +56,11 @@ class Trayecto {
      * @ORM\JoinColumn(name="persona_id", referencedColumnName="id")
      */
     protected $conductor;
+    
+    public function __construct(){
+        $this->fechaPublicacion = new \DateTime();
+        $this->hora = new \DateTime();
+    }
 
     /**
      * Get id
