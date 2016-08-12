@@ -24,6 +24,7 @@ class PrivateController extends Controller
      * 
      * */
     return $this->render('building/index.html.twig');
+    //return $this->render('nuevoTrayecto/nuevoTrayecto.html.twig');
     }
         
         
@@ -43,6 +44,7 @@ class PrivateController extends Controller
      * 
      * */
     return $this->render('building/index.html.twig');
+    //return $this->render('publicarTrayecto/publicarTrayecto.html.twig');
     }
 }
 
