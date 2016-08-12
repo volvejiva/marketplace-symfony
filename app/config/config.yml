@@ -72,15 +72,11 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\Persona
     
-# app/config/config.yml
 easy_admin:
     entities:
-        - AppBundle\Entity\Persona
-        - AppBundle\Entity\Trayecto
-        
-easy_admin:
-    entities:
-        User:
-            class: AppBundle\Entity\User
+        Trayecto:
+            class: AppBundle\Entity\Trayecto
+        Persona:
+            class: AppBundle\Entity\Persona
             form:
                 fields: ['enabled', 'username', 'email', 'roles', 'lastLogin', 'plainPassword']
