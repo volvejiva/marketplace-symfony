@@ -77,3 +77,10 @@ easy_admin:
     entities:
         - AppBundle\Entity\Persona
         - AppBundle\Entity\Trayecto
+        
+easy_admin:
+    entities:
+        User:
+            class: AppBundle\Entity\User
+            form:
+                fields: ['enabled', 'username', 'email', 'roles', 'lastLogin', 'plainPassword']
