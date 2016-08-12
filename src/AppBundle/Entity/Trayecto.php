@@ -33,7 +33,7 @@ class Trayecto {
     /**
      * @ORM\Column(type="date")
      */
-    protected $fechaPublicacion;
+    protected $fechaViaje;
     /**
      * @ORM\Column(type="time")
      */
@@ -58,7 +58,7 @@ class Trayecto {
     protected $conductor;
     
     public function __construct(){
-        $this->fechaPublicacion = new \DateTime();
+        $this->fechaViaje = new \DateTime();
         $this->hora = new \DateTime();
     }
 
@@ -142,26 +142,26 @@ class Trayecto {
     }
 
     /**
-     * Set fechaPublicacion
+     * Set fechaViaje
      *
-     * @param \DateTime $fechaPublicacion
+     * @param \DateTime $fechaViaje
      * @return Trayecto
      */
-    public function setFechaPublicacion($fechaPublicacion)
+    public function setFechaViaje($fechaViaje)
     {
-        $this->fechaPublicacion = $fechaPublicacion;
+        $this->fechaViaje = $fechaViaje;
 
         return $this;
     }
 
     /**
-     * Get fechaPublicacion
+     * Get fechaViaje
      *
      * @return \DateTime 
      */
-    public function getFechaPublicacion()
+    public function getfechaViaje()
     {
-        return $this->fechaPublicacion;
+        return $this->fechaViaje;
     }
 
     /**
