@@ -33,11 +33,11 @@ class Trayecto {
     /**
      * @ORM\Column(type="date")
      */
-    protected $fechaViaje;
+    protected $fechaDeViaje;
     /**
      * @ORM\Column(type="time")
      */
-    protected $hora;
+    protected $horaDeViaje;
     /**
      * @ORM\Column(type="float")
      */
@@ -58,8 +58,12 @@ class Trayecto {
     protected $conductor;
     
     public function __construct(){
-        $this->fechaViaje = new \DateTime();
-        $this->hora = new \DateTime();
+        $this->fechaDeViaje = new \DateTime();
+        $this->horaDeViaje = new \DateTime();
+    }
+    
+    public function __toString(){
+        return "Viaje de " . $this->getOrigen() . " a " . $this->getDestino();
     }
 
     /**
@@ -142,49 +146,49 @@ class Trayecto {
     }
 
     /**
-     * Set fechaViaje
+     * Set fechaDeViaje
      *
-     * @param \DateTime $fechaViaje
+     * @param \DateTime $fechaDeViaje
      * @return Trayecto
      */
-    public function setFechaViaje($fechaViaje)
+    public function setFechaDeViaje($fechaDeViaje)
     {
-        $this->fechaViaje = $fechaViaje;
+        $this->fechaDeViaje = $fechaDeViaje;
 
         return $this;
     }
 
     /**
-     * Get fechaViaje
+     * Get fechaDeViaje
      *
      * @return \DateTime 
      */
-    public function getfechaViaje()
+    public function getFechaDeViaje()
     {
-        return $this->fechaViaje;
+        return $this->fechaDeViaje;
     }
 
     /**
-     * Set hora
+     * Set horaDeViaje
      *
-     * @param \DateTime $hora
+     * @param \DateTime $horaDeViaje
      * @return Trayecto
      */
-    public function setHora($hora)
+    public function setHoraDeViaje($horaDeViaje)
     {
-        $this->hora = $hora;
+        $this->horaDeViaje = $horaDeViaje;
 
         return $this;
     }
 
     /**
-     * Get hora
+     * Get horaDeViaje
      *
      * @return \DateTime 
      */
-    public function getHora()
+    public function getHoraDeViaje()
     {
-        return $this->hora;
+        return $this->horaDeViaje;
     }
 
     /**
