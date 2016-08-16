@@ -33,6 +33,16 @@ class Persona extends BaseUser
     {
         parent::__construct();
         // your own logic
+
+        $avatars=array(
+            "https://addons.cdn.mozilla.net/user-media/userpics/0/0/45.png?modified=1447324257",
+            "http://megaforo.com/images/user4.png",
+            "http://gh.nsrrc.org.tw/Content/img/male05.png"
+        );
+        //numero aleatorio para elegir el avatar
+        $indexSel = rand(0, count($avatars) - 1);
+        //Asignacion del avatar aleatorio
+        $this->avatar = $avatars[$indexSel];
     }
 
     /**
