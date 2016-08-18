@@ -5,12 +5,14 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * @ORm\Entity
  * @ORM\Table(name="trayecto")
 */
 class Trayecto {
+    use ORMBehaviors\Timestampable\Timestampable;
     /**
     * @ORM\Column(type="integer")
     * @ORM\Id
