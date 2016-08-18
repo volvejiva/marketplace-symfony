@@ -75,8 +75,8 @@
                             {% else %}
                                 <div>
                                     {{ app.user.username }}
-                                    <a href="{{ path('private_publicarTrayecto') }}">
-                                        <button class="btn btn-default" type="submit">Crear Trayecto</button>
+                                    <a href="{{ path('private_nuevoTrayecto') }}">
+                                        <button type="button" class="btn btn-primary">Publica trayecto</button>
                                     </a>
                                     <a>
                                         <button type="button" class="btn btn-primary"> <a href="{{ path('fos_user_security_logout') }}">LOGOUT</a></button>
