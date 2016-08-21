@@ -50,7 +50,7 @@ class PublicController extends Controller
         }
         
         //return $this->render('building/index.html.twig');
-        return $this->render('list/list.html.twig', array(
+        return $this->render('list/index.html.twig', array(
             'country' => $request->get('country'),
             'posted' => $request->get('posted'),
             'trayectos' => $trayectosFiltrados
