@@ -22,10 +22,39 @@ class PublicController extends Controller
      */
     public function listAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('building/index.html.twig');
-        //return $this->render('list/list.html.twig');
+        $entityManager = $this->getDoctrine()->getManager();
+        $repositorioTrayecto = $entityManager->getRepository("AppBundle:Trayecto");
+        $trayectos = $repositorioTrayecto->findAll();
         
+        //Si no se indica un filtro para la fecha, se muestran todos los trayectos
+        if ($request->get('posted') != "" || $request->get('country') != "") {
+            $parameters=array();
+            $queryBuilder = $repositorioTrayecto->createQueryBuilder('trayecto');
+            if($request->get('country')!=""){
+                $queryBuilder->where('trayecto.origen = :country')->orWhere('trayecto.destino = :country');
+                $parameters['country']=$request->get('country');
+            }   
+            if($request->get('posted') != ""){
+                if ($request->get('country')!=""){
+                    $queryBuilder->andWhere('fecha.CreatedAt > :posted');
+                }else {
+                    $queryBuilder->where('fecha.CreatedAt > :posted');
+                } 
+                $date=new DateTime();
+                $date->modify('-'.$request->get('posted').' day');
+                $parameters['posted']=$date;
+            }
+            $trayectosFiltrados =$queryBuilder->setParameters($parameters)->getQuery()->execute();
+        }else{
+            $trayectosFiltrados = $trayectos;
+        }
+        
+        //return $this->render('building/index.html.twig');
+        return $this->render('list/list.html.twig', array(
+            'country' => $request->get('country'),
+            'posted' => $request->get('posted'),
+            'trayectos' => $trayectosFiltrados
+        ));
         /**
          *  0. Para que funcionen estas instrucciones suponemos que tenemos creada nuestra BBDD con la entidad trayectos y persona y
          *   todas las variables correctamente
