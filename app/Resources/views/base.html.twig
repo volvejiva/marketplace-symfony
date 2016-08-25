@@ -76,7 +76,7 @@
                                 <div>
                                     {{ app.user.username }}
                                     <a href="{{ path('private_nuevoTrayecto') }}">
-                                        <button type="button" class="btn btn-primary">Publica trayecto</button>
+                                        <button type="button" class="btn btn-primary">Publicar trayecto</button>
                                     </a>
                                     <a>
                                         <button type="button" class="btn btn-primary"> <a href="{{ path('fos_user_security_logout') }}">LOGOUT</a></button>
@@ -102,7 +102,7 @@
     <div class="footer" id="footer">
         <div class="container">
             <ul class=" pull-right navbar-link footer-nav">
-                <li> &copy; 2016 - development by Sopinet Software</li>
+                <li><a href="{{ path('public_terminos') }}">Términos de Uso</a> -  &copy; 2016 - development by Sopinet Software</li>
             </ul>
         </div>
     </div>

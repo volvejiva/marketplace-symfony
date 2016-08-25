@@ -52,4 +52,12 @@ class PublicController extends Controller
             'trayectos' => $trayectosFiltrados
         ));
     }
+    
+      /**
+     * @Route("/terminos", name="public_terminos")
+     */
+    public function terminosAction() {
+        return $this->render('terminos/index.html.twig');
+    }
+    
 }
