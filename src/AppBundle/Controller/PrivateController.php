@@ -51,6 +51,17 @@ class PrivateController extends Controller
         $usuarioLogueado = $this->getUser();
         $nuevoTrayecto->setConductor($usuarioLogueado);
         
+        $enabled = $request->get('enabled');
+        
+        if($enabled != null){
+            $nuevoTrayecto->setEnabled(true);    
+        }else{
+            $nuevoTrayecto->setEnabled(false);
+        }
+        
+        
+        
+        
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($nuevoTrayecto);
         $entityManager->flush();
