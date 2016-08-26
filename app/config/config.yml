@@ -82,3 +82,7 @@ easy_admin:
             class: AppBundle\Entity\Persona
             form:
                 fields: ['enabled', 'username', 'email', 'roles', 'lastLogin', 'plainPassword']
+        Ciudad:
+            class: AppBundle\Entity\Ciudad
+            form:
+                fields: ['nombre']
