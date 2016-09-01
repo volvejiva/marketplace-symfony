@@ -38,8 +38,25 @@ class PrivateController extends Controller
     {
         $nuevoTrayecto = new Trayecto();
         
-        $nuevoTrayecto->setOrigen(($request->get('origen')));
-        $nuevoTrayecto->setDestino($request->get('destino'));
+
+        
+        // Manager de Doctrine
+        $em = $this->getDoctrine()->getManager();
+
+        // Nombre de la ciudad, que viene dado por el formulario        
+        $origen = $request->get('origen');
+        
+        // Se busca el objeto Ciudad por el campo "Nombre"
+        $ciudad = $em->getRepository('AppBundle:Ciudad')->findOneByNombre($origen);
+        
+        // Se asocia el objeto Ciudad al objeto Trayecto
+        $nuevoTrayecto->setOrigen($ciudad);
+
+
+        $destino = $request->get("destino");
+        $ciudad = $em->getRepository("AppBundle:Ciudad")->findOneByNombre($destino);
+        $nuevoTrayecto->setOrigen($ciudad);
+        
         $nuevoTrayecto->setCalle($request->get('calle'));
         $fechaDateTime = new \DateTime($request->get('fechaDeViaje'));
         $nuevoTrayecto->setFechaDeViaje($fechaDateTime);

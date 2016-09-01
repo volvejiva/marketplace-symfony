@@ -73,11 +73,12 @@ class Trayecto {
     public function __toString(){
         return "Viaje de " . $this->getOrigen() . " a " . $this->getDestino();
     }
+    
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -88,6 +89,7 @@ class Trayecto {
      * Set calle
      *
      * @param string $calle
+     *
      * @return Trayecto
      */
     public function setCalle($calle)
@@ -100,7 +102,7 @@ class Trayecto {
     /**
      * Get calle
      *
-     * @return string 
+     * @return string
      */
     public function getCalle()
     {
@@ -111,6 +113,7 @@ class Trayecto {
      * Set fechaDeViaje
      *
      * @param \DateTime $fechaDeViaje
+     *
      * @return Trayecto
      */
     public function setFechaDeViaje($fechaDeViaje)
@@ -123,7 +126,7 @@ class Trayecto {
     /**
      * Get fechaDeViaje
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaDeViaje()
     {
@@ -134,6 +137,7 @@ class Trayecto {
      * Set horaDeViaje
      *
      * @param \DateTime $horaDeViaje
+     *
      * @return Trayecto
      */
     public function setHoraDeViaje($horaDeViaje)
@@ -146,7 +150,7 @@ class Trayecto {
     /**
      * Get horaDeViaje
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getHoraDeViaje()
     {
@@ -157,6 +161,7 @@ class Trayecto {
      * Set precio
      *
      * @param float $precio
+     *
      * @return Trayecto
      */
     public function setPrecio($precio)
@@ -169,7 +174,7 @@ class Trayecto {
     /**
      * Get precio
      *
-     * @return float 
+     * @return float
      */
     public function getPrecio()
     {
@@ -180,6 +185,7 @@ class Trayecto {
      * Set descripcion
      *
      * @param string $descripcion
+     *
      * @return Trayecto
      */
     public function setDescripcion($descripcion)
@@ -192,7 +198,7 @@ class Trayecto {
     /**
      * Get descripcion
      *
-     * @return string 
+     * @return string
      */
     public function getDescripcion()
     {
@@ -203,6 +209,7 @@ class Trayecto {
      * Set plazas
      *
      * @param integer $plazas
+     *
      * @return Trayecto
      */
     public function setPlazas($plazas)
@@ -215,34 +222,11 @@ class Trayecto {
     /**
      * Get plazas
      *
-     * @return integer 
+     * @return integer
      */
     public function getPlazas()
     {
         return $this->plazas;
-    }
-
-    /**
-     * Set conductor
-     *
-     * @param \AppBundle\Entity\Persona $conductor
-     * @return Trayecto
-     */
-    public function setConductor(\AppBundle\Entity\Persona $conductor = null)
-    {
-        $this->conductor = $conductor;
-
-        return $this;
-    }
-
-    /**
-     * Get conductor
-     *
-     * @return \AppBundle\Entity\Persona 
-     */
-    public function getConductor()
-    {
-        return $this->conductor;
     }
 
     /**
@@ -315,5 +299,29 @@ class Trayecto {
     public function getDestino()
     {
         return $this->destino;
+    }
+
+    /**
+     * Set conductor
+     *
+     * @param \AppBundle\Entity\Persona $conductor
+     *
+     * @return Trayecto
+     */
+    public function setConductor(\AppBundle\Entity\Persona $conductor = null)
+    {
+        $this->conductor = $conductor;
+
+        return $this;
+    }
+
+    /**
+     * Get conductor
+     *
+     * @return \AppBundle\Entity\Persona
+     */
+    public function getConductor()
+    {
+        return $this->conductor;
     }
 }
