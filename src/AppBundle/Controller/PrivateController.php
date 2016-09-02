@@ -83,17 +83,7 @@ class PrivateController extends Controller
         $entityManager->persist($nuevoTrayecto);
         $entityManager->flush();
         
-        die("Pendiente de hacer");
-        
-    /**
-     * TODO:
-     *  Dejamos pendiente la redirección a la pantalla list, que la haremos cuando completemos dicha pantalla.
-     *  Por ahora redireccionamos a public_home
-     */
- 
-     return $this->redirect($this->generateUrl('public_home'));
-    // return $this->render('building/index.html.twig');
-    //return $this->render('publicarTrayecto/publicarTrayecto.html.twig');
+    return $this->redirect($this->generateUrl('list'));
     }
 }
 
