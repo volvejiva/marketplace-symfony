@@ -6,6 +6,7 @@ use AppBundle\Entity\Trayecto;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Ciudad;
 
 class PrivateController extends Controller
 {
@@ -45,17 +46,27 @@ class PrivateController extends Controller
 
         // Nombre de la ciudad, que viene dado por el formulario        
         $origen = $request->get('origen');
-        
         // Se busca el objeto Ciudad por el campo "Nombre"
         $ciudad = $em->getRepository('AppBundle:Ciudad')->findOneByNombre($origen);
-        
+        if ($ciudad == null) {
+            $ciudad = new Ciudad();
+            $ciudad->setNombre($origen);
+            $em->persist($ciudad);
+            $em->flush();
+        }
         // Se asocia el objeto Ciudad al objeto Trayecto
         $nuevoTrayecto->setOrigen($ciudad);
 
 
-        $destino = $request->get("destino");
-        $ciudad = $em->getRepository("AppBundle:Ciudad")->findOneByNombre($destino);
-        $nuevoTrayecto->setOrigen($ciudad);
+        $destinoString = $request->get("destino");
+        $destinoObject = $em->getRepository("AppBundle:Ciudad")->findOneByNombre($destinoString);
+        if ($destinoObject == null) {
+            $destinoObject = new Ciudad();
+            $destinoObject->setNombre($destinoString);
+            $em->persist($destinoObject);
+            $em->flush();
+        }
+        $nuevoTrayecto->setDestino($destinoObject);
         
         $nuevoTrayecto->setCalle($request->get('calle'));
         $fechaDateTime = new \DateTime($request->get('fechaDeViaje'));
@@ -76,14 +87,10 @@ class PrivateController extends Controller
             $nuevoTrayecto->setEnabled(false);
         }
         
+        $em->persist($nuevoTrayecto);
+        $em->flush();
         
-        
-        
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($nuevoTrayecto);
-        $entityManager->flush();
-        
-    return $this->redirect($this->generateUrl('list'));
+        return $this->redirect($this->generateUrl('list'));
     }
 }
 
