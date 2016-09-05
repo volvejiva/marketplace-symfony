@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Persona;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PublicController extends Controller
 {
@@ -73,11 +75,27 @@ class PublicController extends Controller
         ));
     }
     
-      /**
+    /**
      * @Route("/terminos", name="public_terminos")
      */
     public function terminosAction() {
         return $this->render('terminos/index.html.twig');
+    }
+    
+    /**
+     * @Route("/fichaUsuario/{persona}", name="public_fichaUsuario")
+     * @ParamConverter("persona", class="AppBundle:Persona")
+     */
+    public function fichaUsuarioAction(Persona $persona) {
+        /* Usando el ParamConverter nos ahorramos este código
+        $entityManager = $this->getDoctrine()->getManager();
+        $repositorioPersona = $entityManager->getRepository("AppBundle:Persona");
+        $persona = $repositorioPersona->findOneById($idUsuario);
+        */
+
+         return $this->render('fichas/fichaUsuario.html.twig', array(
+            'persona' => $persona
+        ));
     }
     
 }
