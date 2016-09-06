@@ -15,21 +15,8 @@ class PrivateController extends Controller
      */
     public function nuevoTrayectoAction(Request $request)
     {
-    
-    /**
-     * muestra un formulario para crear un nuevp trayecto
-     * 
-     * 1.- Crear carpeta nueva /app/Resources/views/trayecto
-     * 1. Habría que copiar los twig de nuevoTrayecto.html.twig
-     * 2. Y indicar en el render que se muestren
-     *  
-     * 
-     * */
-    return $this->render('nuevoTrayecto/index.html.twig');
-    //return $this->render('nuevoTrayecto/nuevoTrayecto.html.twig');
+        return $this->render('nuevoTrayecto/index.html.twig');
     }
-        
-        
         
      /**
      * @Route("/publicarTrayecto", name="private_publicarTrayecto")
@@ -38,8 +25,6 @@ class PrivateController extends Controller
     public function publicarTrayectoAction(Request $request)
     {
         $nuevoTrayecto = new Trayecto();
-        
-
         
         // Manager de Doctrine
         $em = $this->getDoctrine()->getManager();
@@ -93,5 +78,3 @@ class PrivateController extends Controller
         return $this->redirect($this->generateUrl('list'));
     }
 }
-
-
