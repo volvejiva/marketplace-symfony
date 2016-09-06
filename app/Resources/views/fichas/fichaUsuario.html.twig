@@ -6,17 +6,21 @@
         <!-- Nav tabs -->
         <div class="col-lg-12  box-title no-border">
             <div class="inner">
+                <div class="col-sm-1  col-xs-2 no-padding photobox">
+                    <div class="add-image"><a href=""><img class="thumbnail no-margin" src="{{ persona.avatar }}" alt="Avatar de {{ persona.username }}"></a></div>
+                </div>
                 <h2>
-                    Información del usuario <span>{{ persona.username }}</span>
-                    <small> {{ persona.trayectos|length }} trayectos publicados</small>
+                    Información del usuario: <span>{{ persona.username }}</span>
+                    <br><small> En total tiene {{ persona.trayectos|length }} trayectos publicados</small>
                 </h2>
             </div>
         </div>
         <div class="adds-wrapper jobs-list">
-            //Para listar todos los trayectos del usuario
+            <!-- Para listar todos los trayectos del usuario -->
             {% for trayecto in persona.trayectos %}
                 {% include "fichas/usuario.html.twig" with {'trayecto': trayecto} %}
             {% endfor %}
         </div>
+        <br><center><a href="{{ path('list') }}"><button type="button" class="btn btn-primary">Volver</button></a></center><br>
     </div>  
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Persona;
+use AppBundle\Entity\Trayecto;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,6 +96,22 @@ class PublicController extends Controller
 
          return $this->render('fichas/fichaUsuario.html.twig', array(
             'persona' => $persona
+        ));
+    }
+    
+    /**
+     * @Route("/fichaTrayecto/{trayecto}", name="public_fichaTrayecto")
+     * @ParamConverter("trayecto", class="AppBundle:Trayecto")
+     */
+    public function fichaTrayectoAction(Trayecto $trayecto) {
+        /* Usando el ParamConverter nos ahorramos este código
+        $entityManager = $this->getDoctrine()->getManager();
+        $repositorioTrayecto = $entityManager->getRepository("AppBundle:Trayecto");
+        trayecto = $repositorioTrayecto->findOneById($idTrayecto);
+        */
+
+         return $this->render('fichas/fichaTrayecto.html.twig', array(
+            'trayecto' => $trayecto
         ));
     }
     
