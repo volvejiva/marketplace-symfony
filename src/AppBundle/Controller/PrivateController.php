@@ -7,20 +7,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Ciudad;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PrivateController extends Controller
 {
     /**
-     * @Route("/nuevoTrayecto", name="private_nuevoTrayecto")
-     */
+    * @Route("/nuevoTrayecto", name="private_nuevoTrayecto")
+    */
     public function nuevoTrayectoAction(Request $request)
     {
         return $this->render('nuevoTrayecto/index.html.twig');
     }
         
-     /**
-     * @Route("/publicarTrayecto", name="private_publicarTrayecto")
-     */
+    /**
+    * @Route("/publicarTrayecto", name="private_publicarTrayecto")
+    */
      
     public function publicarTrayectoAction(Request $request)
     {
@@ -74,6 +75,46 @@ class PrivateController extends Controller
         
         $em->persist($nuevoTrayecto);
         $em->flush();
+        
+        return $this->redirect($this->generateUrl('list'));
+    }
+    
+    /**
+    * @Route("/reservarPlaza/{idTrayecto}", name="private_reservarPlaza")
+    * @ParamConverter("idTrayecto", class="AppBundle:Trayecto")
+    */
+    public function reservarPlazaAction(Trayecto $idTrayecto)
+    {
+        // Manager de Doctrine
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $plazasMax = $idTrayecto->getPlazas();
+        $idTrayecto->setPlazas($plazasMax - 1);
+        
+        //Para guardar la persona que reserva la plaza
+        $idTrayecto->addCopiloto($this->getUser());
+        
+        /*if ($idTrayecto == '0') {
+            $ciudad = new Ciudad();
+            $ciudad->setNombre($origen);
+            $entityManager->persist($plazasMax);
+            $entityManager->flush();
+        }*/
+        
+        $entityManager->persist($idTrayecto);
+        $into = $entityManager->flush();
+        
+        if ($into == null) {
+            $this->addFlash(
+                'notice',
+                'Hay algún problema con tu reserva!'
+            );
+        } else {
+            $this->addFlash(
+                'notice',
+                'Tu reserva se ha realizado con éxito!'
+            );
+        }
         
         return $this->redirect($this->generateUrl('list'));
     }

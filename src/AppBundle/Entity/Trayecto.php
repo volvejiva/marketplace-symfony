@@ -9,6 +9,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 /**
  * @ORm\Entity
  * @ORM\Table(name="trayecto")
+ * @ORM\HasLifecycleCallbacks()
 */
 class Trayecto {
     use ORMBehaviors\Timestampable\Timestampable;
@@ -53,6 +54,17 @@ class Trayecto {
      * @ORM\Column(type="integer")
      */
     protected $plazas;
+    
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $plazasMax;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Persona", inversedBy="trayectos")
+     * @ORM\JoinColumn(name="persona_id", referencedColumnName="id")
+     */
+    protected $copiloto;
     
     /**
      * @ORM\ManyToOne(targetEntity="Persona", inversedBy="trayectos")
@@ -323,5 +335,80 @@ class Trayecto {
     public function getConductor()
     {
         return $this->conductor;
+    }
+
+    /**
+     * Set plazasMax
+     *
+     * @param integer $plazasMax
+     * @return Trayecto
+     */
+    public function setPlazasMax($plazasMax)
+    {
+        $this->plazasMax = $plazasMax;
+
+        return $this;
+    }
+
+    /**
+     * Get plazasMax
+     *
+     * @return integer 
+     */
+    public function getPlazasMax()
+    {
+        return $this->plazasMax;
+    }
+
+    /**
+     * Add copiloto
+     *
+     * @param \AppBundle\Entity\Persona $copiloto
+     * @return Trayecto
+     */
+    public function addCopiloto(\AppBundle\Entity\Persona $copiloto)
+    {
+        $this->copiloto[] = $copiloto;
+
+        return $this;
+    }
+
+    /**
+     * Remove copiloto
+     *
+     * @param \AppBundle\Entity\Persona $copiloto
+     */
+    public function removeCopiloto(\AppBundle\Entity\Persona $copiloto)
+    {
+        $this->copiloto->removeElement($copiloto);
+    }
+
+    /**
+     * Get copiloto
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCopiloto()
+    {
+        return $this->copiloto;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function setIgualarPlazas()
+    {
+        $this->plazasMax = $this->plazas;
+    }
+    
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatePlazas()
+    {
+        $copilotos = count($this->getCopiloto());
+        $reservas = $this->plazas - $copilotos;
+        
+        $this->plazas = $reservas;
     }
 }

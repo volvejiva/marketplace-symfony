@@ -12,8 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class PublicController extends Controller
 {
     /**
-     * @Route("/", name="home")
-     */
+    * @Route("/", name="home")
+    */
     public function homeAction(Request $request)
     {
         // Instanciamos la clase EntityManager de Doctrine
@@ -36,8 +36,8 @@ class PublicController extends Controller
     }
     
     /**
-     * @Route("/list", name="list")
-     */
+    * @Route("/list", name="list")
+    */
     public function listAction(Request $request)
     {
         $entityManager = $this->getDoctrine()->getManager();

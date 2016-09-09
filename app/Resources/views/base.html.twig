@@ -93,7 +93,13 @@
         <!-- /.header -->
     {% endblock %}
     
-        
+    <!-- Espacio para mostrar los mensajes pop up -->
+    {% for flash_message in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    
     {% block contenido %}
         Rellena este bloque
     {% endblock %}

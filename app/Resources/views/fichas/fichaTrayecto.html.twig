@@ -21,12 +21,29 @@
                 <div class="jobs-desc">
                     {{ trayecto.descripcion }}
                 </div>
+                
+                <!-- Bucle para que no pueda reservar un usuario 2 veces -->
+                {% for app.user in trayecto.copiloto  %}
+                    $reserva = true;
+                {% endfor %}
+                
                 <div class="job-actions">
                     <ul class="list-unstyled list-inline">
                         <li>
                             <span class="save-job">
                                 <span class="fa fa-users"></span>
                                 {{ trayecto.plazas }} plazas
+                                {% if app.user == null %}
+                                    <span>|| <b>Inicia sesión para poder reservar tu plaza.</b></span>
+                                {% else %}
+                                    {% if trayecto.plazas <= '0' %}
+                                        <span>VIAJE COMPLETO</span>
+                                    {% elseif reserva %}
+                                        <span>PLAZA RESERVADA</span>
+                                    {% else %}
+                                        <span><a href="{{ path('private_reservarPlaza', {'idTrayecto': trayecto.id }) }}"><button type="button" class="btn btn-primary">Reservar</button></a></span>
+                                    {% endif %}
+                                {% endif %}
                             </span>
                         </li>
                     </ul>
