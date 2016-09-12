@@ -86,19 +86,9 @@ class PrivateController extends Controller
     {
         // Manager de Doctrine
         $entityManager = $this->getDoctrine()->getManager();
-        
-        /*$plazasMax = $idTrayecto->getPlazas();
-        $idTrayecto->setPlazas($plazasMax - 1);*/
-        
+
         //Para guardar la persona que reserva la plaza
         $idTrayecto->addCopiloto($this->getUser());
-        
-        /*if ($idTrayecto == '0') {
-            $ciudad = new Ciudad();
-            $ciudad->setNombre($origen);
-            $entityManager->persist($plazasMax);
-            $entityManager->flush();
-        }*/
         
         $entityManager->persist($idTrayecto);
         $into = $entityManager->flush();
