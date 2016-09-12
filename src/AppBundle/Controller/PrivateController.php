@@ -43,7 +43,6 @@ class PrivateController extends Controller
         // Se asocia el objeto Ciudad al objeto Trayecto
         $nuevoTrayecto->setOrigen($ciudad);
 
-
         $destinoString = $request->get("destino");
         $destinoObject = $em->getRepository("AppBundle:Ciudad")->findOneByNombre($destinoString);
         if ($destinoObject == null) {
@@ -88,8 +87,8 @@ class PrivateController extends Controller
         // Manager de Doctrine
         $entityManager = $this->getDoctrine()->getManager();
         
-        $plazasMax = $idTrayecto->getPlazas();
-        $idTrayecto->setPlazas($plazasMax - 1);
+        /*$plazasMax = $idTrayecto->getPlazas();
+        $idTrayecto->setPlazas($plazasMax - 1);*/
         
         //Para guardar la persona que reserva la plaza
         $idTrayecto->addCopiloto($this->getUser());
