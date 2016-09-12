@@ -407,7 +407,7 @@ class Trayecto {
     public function setUpdatePlazas()
     {
         $copilotos = count($this->getCopiloto());
-        $reservas = $this->plazas - $copilotos;
+        $reservas = $this->plazasMax - $copilotos;
         
         $this->plazas = $reservas;
     }
