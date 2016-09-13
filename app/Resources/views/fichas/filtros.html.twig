@@ -1,18 +1,20 @@
-{% if app.user == null %}
-    <span>|| <b>Inicia sesión para poder reservar tu plaza.</b></span>
-{% else %}
-    <!-- Bucle para que no pueda reservar un usuario 2 veces -->
-    {% set yaExiste = false %}
-    {% for copiloto in trayecto.copiloto %}
-        {% if app.user.id == copiloto.id or app.user.id == trayecto.conductor.id %}
-            {% set yaExiste = true %}
-        {% endif %}
-    {% endfor %}
-    {% if trayecto.plazas <= '0' %}
-        <span>VIAJE COMPLETO</span>
-    {% elseif yaExiste %}
-        <span>PLAZA RESERVADA</span>
+{% block filtro %}
+    {% if app.user == null %}
+        <span>|| <b>Inicia sesión para poder reservar tu plaza.</b></span>
     {% else %}
-        <span><a href="{{ path('private_reservarPlaza', {'idTrayecto': trayecto.id }) }}"><button type="button" class="btn btn-primary">Reservar</button></a></span>
+        <!-- Bucle para que no pueda reservar un usuario 2 veces -->
+        {% set yaExiste = false %}
+        {% for copiloto in trayecto.copiloto %}
+            {% if app.user.id == copiloto.id or app.user.id == trayecto.conductor.id %}
+                {% set yaExiste = true %}
+            {% endif %}
+        {% endfor %}
+        {% if trayecto.plazas <= '0' %}
+            <span>VIAJE COMPLETO</span>
+        {% elseif yaExiste %}
+            <span>PLAZA RESERVADA</span>
+        {% else %}
+            <span><a href="{{ path('private_reservarPlaza', {'idTrayecto': trayecto.id }) }}"><button type="button" class="btn btn-primary">Reservar</button></a></span>
+        {% endif %}
     {% endif %}
-{% endif %}
+{% endblock %}
